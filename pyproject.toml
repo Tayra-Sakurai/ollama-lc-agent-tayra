@@ -33,6 +33,7 @@ dependencies = [
   "websockets>=16.1.1",
   "pydantic>=2.14",
   "uuid_utils>=0.17",
+  "langsmith>=0.14.11",
 ]
 
 [project.optional-dependencies]
@@ -103,4 +104,17 @@ exclude_lines = [
   "no cov",
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
+]
+
+[tool.uv.workspace]
+members = [
+    ".",
+]
+
+[tool.uv.sources]
+ollama-lc-agent-tayra = { workspace = true, editable = true }
+
+[dependency-groups]
+dev = [
+    "ollama-lc-agent-tayra",
 ]

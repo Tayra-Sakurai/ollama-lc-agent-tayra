@@ -1,0 +1,106 @@
+[build-system]
+requires = ["hatchling>=1.32"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ollama-lc-agent-tayra"
+dynamic = ["version"]
+description = 'An AI agent CLI package with Web UI and the RAG.'
+readme = "README.md"
+requires-python = ">=3.13"
+license = "AGPL-3.0-or-later"
+keywords = []
+authors = [
+  { name = "Tayra Sakurai", email = "b4151069@edu.kit.ac.jp" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = [
+  "langchain>=1.4",
+  "langchain-text-splitters>=1.1.3",
+  "langgraph-checkpoint>=4.3",
+  "langgraph>=1.2.17",
+  "langgraph-sdk>=0.4.9",
+  "langchain-core>=1.7",
+  "PyYAML>=6.0.3",
+  "gradio>=6.30",
+  "websockets>=16.1.1",
+  "pydantic>=2.14",
+  "uuid_utils>=0.17",
+]
+
+[project.optional-dependencies]
+dev = [
+  "langchain-google-genai>=4.4.2",
+  "langchain-ollama>=1.1",
+  "langchain-chroma>=1.1",
+  "langgraph-checkpoint-sqlite>=3.1.2",
+  "hatch>=1.18.1",
+  "hatchling>=1.32",
+  "sphinx>=9.2",
+  "pydata-sphinx-theme>=0.23",
+]
+local = [
+  "langchain-ollama>=1.1",
+  "langchain-chroma>=1.1",
+  "langgraph-checkpoint-sqlite>=3.1.2",
+]
+
+[project.urls]
+Documentation = "https://tayra-sakurai.github.io/ollama-lc-agent-tayra"
+Issues = "https://github.com/Tayra-Sakurai/ollama-lc-agent-tayra/issues"
+Source = "https://github.com/Tayra-Sakurai/ollama-lc-agent-tayra"
+
+[tool.hatch.version]
+path = "src/ollama_lc_agent_tayra/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/ollama_lc_agent_tayra tests}"
+
+[tool.hatch.envs.hatch-test]
+extra-dependencies = [
+  "langchain-google-genai>=4.4.2",
+  "langchain-ollama>=1.1",
+  "langchain-chroma>=1.1",
+  "langgraph-checkpoint-sqlite>=3.1.2",
+  "hatch>=1.18.1",
+  "hatchling>=1.32",
+  "sphinx>=9.2",
+  "pydata-sphinx-theme>=0.23",
+]
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = [
+  "3.15",
+  "3.14",
+  "3.13",
+]
+
+[tool.coverage.run]
+source_pkgs = ["ollama_lc_agent_tayra", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/ollama_lc_agent_tayra/__about__.py",
+]
+
+[tool.coverage.paths]
+ollama_lc_agent_tayra = ["src/ollama_lc_agent_tayra", "*/ollama-lc-agent-tayra/src/ollama_lc_agent_tayra"]
+tests = ["tests", "*/ollama-lc-agent-tayra/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]

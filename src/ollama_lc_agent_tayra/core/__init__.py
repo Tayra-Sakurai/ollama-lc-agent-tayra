@@ -7,7 +7,7 @@ Submodules
 ----------
 
 .. autosummary::
-   :toctree: generated/
+   :toctree: generated/core/
 
    load_documents
 """

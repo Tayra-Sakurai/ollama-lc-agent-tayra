@@ -11,3 +11,4 @@ Submodules
 
    load_documents
 """
+from ._db_load import *

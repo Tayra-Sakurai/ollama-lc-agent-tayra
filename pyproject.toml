@@ -95,6 +95,9 @@ omit = [
   "src/ollama_lc_agent_tayra/__about__.py",
 ]
 
+[project.scripts]
+ollama-lc-agent-tayra = "ollama_lc_agent_tayra.local:main"
+
 [tool.coverage.paths]
 ollama_lc_agent_tayra = ["src/ollama_lc_agent_tayra", "*/ollama-lc-agent-tayra/src/ollama_lc_agent_tayra"]
 tests = ["tests", "*/ollama-lc-agent-tayra/tests"]

@@ -55,7 +55,8 @@ def main() -> None:
         '--model',
         type=str,
         help='The model name.',
-        default='gemma4:e2b'
+        default=ollama.list().models[0].model,
+        choices=[ model.model for model in ollama.list().models ]
     )
     sub_b.add_argument(
         '-e',
@@ -64,3 +65,9 @@ def main() -> None:
         help='The embedding model.',
         default='embeddinggemma:latest'
     )
+    sub_b.add_argument(
+        'db_dir',
+        type=str,
+        help='The directory of database file.'
+    )
+    ns = parser.parse_args()

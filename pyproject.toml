@@ -7,7 +7,7 @@ name = "ollama-lc-agent-tayra"
 dynamic = ["version"]
 description = 'An AI agent CLI package with Web UI and the RAG.'
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<3.15"
 license = "AGPL-3.0-or-later"
 keywords = []
 authors = [
@@ -74,15 +74,11 @@ extra-dependencies = [
   "langchain-ollama>=1.1",
   "langchain-chroma>=1.1",
   "langgraph-checkpoint-sqlite>=3.1.2",
-  "hatch>=1.18.1",
-  "hatchling>=1.32",
-  "sphinx>=9.2",
-  "pydata-sphinx-theme>=0.23",
+  "pytest>=9.1.1",
 ]
 
 [[tool.hatch.envs.hatch-test.matrix]]
 python = [
-  "3.15",
   "3.14",
   "3.13",
 ]
@@ -108,13 +104,8 @@ exclude_lines = [
 
 [tool.uv.workspace]
 members = [
-    ".",
+  ".",
 ]
 
 [tool.uv.sources]
 ollama-lc-agent-tayra = { workspace = true, editable = true }
-
-[dependency-groups]
-dev = [
-    "ollama-lc-agent-tayra",
-]

@@ -1,0 +1,48 @@
+name: Build Python Package
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Test and Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the Repo
+        uses: actions/checkout@v7
+
+      - name: Install Hatch
+        uses: pypa/hatch@install
+
+      - name: Test Python Package
+        run: hatch test -a
+
+      - name: Build Python Package
+        run: hatch build --clean
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/**
+          name: dist
+
+  upload:
+    needs: build
+    name: Upload the artifact.
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    environment:
+      name: pypi
+      url: https://pypi.org/p/ollama-lc-agent-tayra
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v8
+        with:
+          path: dist/
+
+      - name: Upload to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+    

@@ -1,0 +1,31 @@
+name: Test Python Package
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
+      - pyproject.toml
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        platform: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Check out the Repo
+        uses: actions/checkout@v7
+
+      - name: Install Hatch
+        uses: pypa/hatch@install
+
+      - name: Run tests
+        run: hatch test --all

@@ -2217,11 +2217,6 @@ local = [
     { name = "langgraph-checkpoint-sqlite" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "ollama-lc-agent-tayra" },
-]
-
 [package.metadata]
 requires-dist = [
     { name = "gradio", specifier = ">=6.30" },
@@ -2249,9 +2244,6 @@ requires-dist = [
     { name = "websockets", specifier = ">=16.1.1" },
 ]
 provides-extras = ["dev", "local"]
-
-[package.metadata.requires-dev]
-dev = [{ name = "ollama-lc-agent-tayra", editable = "." }]
 
 [[package]]
 name = "onnxruntime"

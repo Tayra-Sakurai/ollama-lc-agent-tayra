@@ -362,7 +362,8 @@
         <span class="s1">'--model'</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s1">'The model name.'</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s1">'gemma4:e2b'</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">ollama</span><span class="o">.</span><span class="n">list</span><span class="p">()</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">ollama</span><span class="o">.</span><span class="n">list</span><span class="p">()</span><span class="o">.</span><span class="n">models</span> <span class="p">]</span>
     <span class="p">)</span>
     <span class="n">sub_b</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s1">'-e'</span><span class="p">,</span>
@@ -370,7 +371,13 @@
         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s1">'The embedding model.'</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="s1">'embeddinggemma:latest'</span>
-    <span class="p">)</span></div>
+    <span class="p">)</span>
+    <span class="n">sub_b</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">'db_dir'</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">'The directory of database file.'</span>
+    <span class="p">)</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></div>
 
 </pre></div>
 

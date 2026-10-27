@@ -10,5 +10,7 @@ Submodules
    :toctree: generated/core/
 
    load_documents
+   load_vector_store
 """
 from ._db_load import *
+from ._rag import *
